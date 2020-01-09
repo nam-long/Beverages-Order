@@ -7,25 +7,23 @@ public class OrderDetails {
     private int id;
     private int orderId;
     private int beverageId;
-    private int condimentId;
     private float price;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(int orderId, int beverageId, int condimentId, float price) {
-        internalInit(0, orderId, beverageId, condimentId, price);
+    public OrderDetails(int orderId, int beverageId, float price) {
+        internalInit(0, orderId, beverageId, price);
     }
 
-    public OrderDetails(int id, int orderId, int beverageId, int condimentId, float price) {
-        internalInit(id, orderId, beverageId, condimentId, price);
+    public OrderDetails(int id, int orderId, int beverageId, float price) {
+        internalInit(id, orderId, beverageId, price);
     }
 
-    private void internalInit(int id, int orderId, int beverageId, int condimentId, float price) {
+    private void internalInit(int id, int orderId, int beverageId, float price) {
         this.id = id;
         this.orderId = orderId;
         this.beverageId = beverageId;
-        this.condimentId = condimentId;
         this.price = price;
     }
 
@@ -53,14 +51,6 @@ public class OrderDetails {
         this.beverageId = beverageId;
     }
 
-    public int getCondimentId() {
-        return condimentId;
-    }
-
-    public void setCondimentId(int condimentId) {
-        this.condimentId = condimentId;
-    }
-
     public float getPrice() {
         return price;
     }
@@ -77,12 +67,11 @@ public class OrderDetails {
         return id == that.id &&
                 orderId == that.orderId &&
                 beverageId == that.beverageId &&
-                condimentId == that.condimentId &&
                 Float.compare(that.price, price) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderId, beverageId, condimentId, price);
+        return Objects.hash(id, orderId, beverageId, price);
     }
 }

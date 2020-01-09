@@ -15,14 +15,13 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
     public void insert(OrderDetails orderDetails) {
 
         Database db = new Database();
-        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,CondimentId,Price) VALUES(?,?,?,?)";
+        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,Price) VALUES(?,?,?,?)";
 
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_INSERT_ORDER_DETAILS, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, orderDetails.getOrderId());
             ps.setInt(2, orderDetails.getBeverageId());
-            ps.setInt(3, orderDetails.getCondimentId());
-            ps.setFloat(4, orderDetails.getPrice());
+            ps.setFloat(3, orderDetails.getPrice());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -41,15 +40,14 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
     public void update(OrderDetails orderDetails) {
 
         Database db = new Database();
-        final String SQL_UPDATE_ORDER_DETAILS_BY_ID = "UPDATE OrderDetails SET OrderId=?, BeverageId=?, CondimentId=?,Price=? WHERE Id=?";
+        final String SQL_UPDATE_ORDER_DETAILS_BY_ID = "UPDATE OrderDetails SET OrderId=?, BeverageId=?,Price=? WHERE Id=?";
 
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_UPDATE_ORDER_DETAILS_BY_ID);
             ps.setInt(1, orderDetails.getOrderId());
             ps.setInt(2, orderDetails.getBeverageId());
-            ps.setInt(3, orderDetails.getCondimentId());
-            ps.setFloat(4, orderDetails.getPrice());
-            ps.setInt(5, orderDetails.getId());
+            ps.setFloat(3, orderDetails.getPrice());
+            ps.setInt(4, orderDetails.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,20 +77,19 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
         List<OrderDetails> orderDetailsList = new ArrayList<>();
         Database db = new Database();
 
-        final String SQL_SELECT_ALL_BEVERATES = "SELECT * FROM OrderDetails";
+        final String SQL_SELECT_ALL_ORDER_DETAILS = "SELECT * FROM OrderDetails";
         try {
             Statement statement = db.getConnection().createStatement();
 
-            ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_BEVERATES);
+            ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_ORDER_DETAILS);
             while (rs.next()) {
 
                 int id = rs.getInt(1);
-                int orderId = rs.getInt(1);
-                int beverageId = rs.getInt(1);
-                int condimentId = rs.getInt(1);
-                float price = rs.getFloat(1);
+                int orderId = rs.getInt(2);
+                int beverageId = rs.getInt(3);
+                float price = rs.getFloat(4);
 
-                OrderDetails orderDetails = new OrderDetails(id, orderId, beverageId, condimentId, price);
+                OrderDetails orderDetails = new OrderDetails(id, orderId, beverageId, price);
                 orderDetailsList.add(orderDetails);
             }
         } catch (SQLException e) {
