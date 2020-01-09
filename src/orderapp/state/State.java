@@ -5,5 +5,5 @@ public enum State {
     HOME,
     BEVERAGE,
     ORDER,
-    ORDER_DETAILS,
+    NEW_ORDER,
 }

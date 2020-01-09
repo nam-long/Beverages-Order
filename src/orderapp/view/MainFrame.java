@@ -8,7 +8,7 @@ import orderapp.state.StateManager;
 import orderapp.view.beverages.Beverages;
 import orderapp.view.home.Home;
 import orderapp.view.intro.Intro;
-import orderapp.view.orderdetails.OrderDetails;
+import orderapp.view.orders.NewOrder;
 import orderapp.view.orders.Orders;
 
 import javax.swing.*;
@@ -125,6 +125,6 @@ public class MainFrame extends JFrame {
         stateManager.add(State.HOME, new Home());
         stateManager.add(State.BEVERAGE, new Beverages());
         stateManager.add(State.ORDER, new Orders());
-        stateManager.add(State.ORDER_DETAILS, new OrderDetails());
+        stateManager.add(State.NEW_ORDER, new NewOrder());
     }
 }
