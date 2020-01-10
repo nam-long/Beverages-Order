@@ -71,6 +71,16 @@ public class Order {
         }
     }
 
+    public void editOrderDetails(OrderDetails editedOrderDetails) {
+        OrderDetails orderDetails = searchOrderDetails(editedOrderDetails.getBeverageId());
+        if (orderDetails != null) {
+            int quantity = editedOrderDetails.getQuantity();
+            float price = orderDetails.getAmount() / orderDetails.getQuantity();
+            orderDetails.setQuantity(quantity);
+            orderDetails.setAmount(editedOrderDetails.getQuantity() * price);
+        }
+    }
+
     private OrderDetails searchOrderDetails(int beverageId) {
         for (OrderDetails orderDetails : orderDetailsList) {
             if (beverageId == orderDetails.getBeverageId())

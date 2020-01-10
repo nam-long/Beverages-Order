@@ -7,6 +7,8 @@ public interface NewOrderController {
 
     void add(OrderDetails orderDetails);
 
+    void edit(OrderDetails orderDetails);
+
     void order();
 
     void registerObserver(ChangedOrderDetailsListObserver observer);

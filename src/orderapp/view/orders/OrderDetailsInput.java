@@ -2,6 +2,7 @@ package orderapp.view.orders;
 
 import orderapp.model.beverage.Beverage;
 import orderapp.model.beverage.BeverageList;
+import orderapp.model.orderdetails.OrderDetails;
 
 import javax.swing.*;
 import java.util.List;
@@ -10,6 +11,10 @@ public class OrderDetailsInput {
 
     public static OrderDetailsInput newOrderDetails(List<Beverage> beverages) {
         return new OrderDetailsInput(beverages);
+    }
+
+    public static OrderDetailsInput editOrderDetails(List<Beverage> beverages, OrderDetails orderDetails) {
+        return new OrderDetailsInput(beverages, orderDetails);
     }
 
     private JPanel rootPanel;
@@ -21,14 +26,23 @@ public class OrderDetailsInput {
 
     private OrderDetailsInput(List<Beverage> beverages) {
 
-        initComponents(beverages, 1);
+        initComponents(beverages, null, 1);
     }
 
-    private void initComponents(List<Beverage> beverages, int quantity) {
+    private OrderDetailsInput(List<Beverage> beverages, OrderDetails orderDetails) {
+
+        initComponents(beverages, orderDetails, orderDetails.getQuantity());
+    }
+
+    private void initComponents(List<Beverage> beverages, OrderDetails orderDetails, int quantity) {
 
         this.beverages = beverages;
         for (Beverage beverage : beverages) {
             this.beverageField.addItem(beverage.getName());
+        }
+
+        if (orderDetails != null) {
+            beverageField.setSelectedItem(BeverageList.getInstance().getBeverageById(orderDetails.getBeverageId()).getName());
         }
 
         this.quantityField.setText(String.valueOf(quantity));

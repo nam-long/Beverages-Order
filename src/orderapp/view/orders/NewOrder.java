@@ -110,6 +110,30 @@ public class NewOrder extends Pane implements OrderView {
     }
 
     private void onEditClicked() {
+
+        int viewRowIndex = orderDetailsTable.getSelectedRow();
+        if (viewRowIndex == -1) {
+            return;
+        }
+
+        int rowIndex = orderDetailsTable.convertRowIndexToModel(viewRowIndex);
+        OrderDetailsInput input = OrderDetailsInput.editOrderDetails(
+                BeverageList.getInstance().getBeverages(),
+                orderDetailsModel.getOrderDetails(rowIndex));
+
+        int option = JOptionPane.showConfirmDialog(
+                rootPanel,
+                input.getRootPanel(),
+                "Edit Order",
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (option == JOptionPane.OK_OPTION) {
+            Beverage beverage = input.getBeverage();
+            int quantity = input.getQuantity();
+
+            OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
+            controller.edit(orderDetails);
+        }
     }
 
     private void onRemoveClicked() {

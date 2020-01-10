@@ -50,4 +50,8 @@ public class OrderDetailsModel extends AbstractTableModel implements ChangedOrde
         this.orderDetailsList.addAll(orderDetailsList);
         this.fireTableDataChanged();
     }
+
+    public OrderDetails getOrderDetails(int rowIndex) {
+        return orderDetailsList.get(rowIndex);
+    }
 }

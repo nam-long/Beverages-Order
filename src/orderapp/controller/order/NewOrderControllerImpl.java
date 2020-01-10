@@ -2,7 +2,6 @@ package orderapp.controller.order;
 
 import orderapp.model.order.Order;
 import orderapp.model.order.OrderModel;
-import orderapp.model.order.OrderModelImpl;
 import orderapp.model.orderdetails.ChangedOrderDetailsListObserver;
 import orderapp.model.orderdetails.OrderDetails;
 import orderapp.state.State;
@@ -29,6 +28,12 @@ public class NewOrderControllerImpl implements NewOrderController {
     @Override
     public void add(OrderDetails newOrderDetails) {
         order.addOrderDetails(newOrderDetails);
+        notifyObservers();
+    }
+
+    @Override
+    public void edit(OrderDetails orderDetails) {
+        order.editOrderDetails(orderDetails);
         notifyObservers();
     }
 
