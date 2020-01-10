@@ -81,6 +81,24 @@ public class Order {
         }
     }
 
+    public void removeOrderDetails(int id) {
+        for (OrderDetails orderDetails : orderDetailsList) {
+            if (orderDetails.getId() == id) {
+                orderDetailsList.remove(orderDetails);
+                return;
+            }
+        }
+    }
+
+    public void removeBeverage(int id) {
+        for (OrderDetails orderDetails : orderDetailsList) {
+            if (orderDetails.getBeverageId() == id) {
+                orderDetailsList.remove(orderDetails);
+                return;
+            }
+        }
+    }
+
     private OrderDetails searchOrderDetails(int beverageId) {
         for (OrderDetails orderDetails : orderDetailsList) {
             if (beverageId == orderDetails.getBeverageId())

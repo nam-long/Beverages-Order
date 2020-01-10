@@ -5,9 +5,13 @@ import orderapp.model.orderdetails.OrderDetails;
 
 public interface NewOrderController {
 
-    void add(OrderDetails orderDetails);
+    void addOrderDetails(OrderDetails orderDetails);
 
-    void edit(OrderDetails orderDetails);
+    void editOrderDetails(OrderDetails orderDetails);
+
+    void removeOrderDetails(int id);
+
+    void removeBeverage(int id);
 
     void order();
 

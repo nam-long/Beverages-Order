@@ -26,14 +26,26 @@ public class NewOrderControllerImpl implements NewOrderController {
     }
 
     @Override
-    public void add(OrderDetails newOrderDetails) {
+    public void addOrderDetails(OrderDetails newOrderDetails) {
         order.addOrderDetails(newOrderDetails);
         notifyObservers();
     }
 
     @Override
-    public void edit(OrderDetails orderDetails) {
+    public void editOrderDetails(OrderDetails orderDetails) {
         order.editOrderDetails(orderDetails);
+        notifyObservers();
+    }
+
+    @Override
+    public void removeOrderDetails(int id) {
+        order.removeOrderDetails(id);
+        notifyObservers();
+    }
+
+    @Override
+    public void removeBeverage(int id) {
+        order.removeBeverage(id);
         notifyObservers();
     }
 

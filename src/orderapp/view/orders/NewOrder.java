@@ -105,7 +105,7 @@ public class NewOrder extends Pane implements OrderView {
             int quantity = input.getQuantity();
 
             OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
-            controller.add(orderDetails);
+            controller.addOrderDetails(orderDetails);
         }
     }
 
@@ -132,11 +132,20 @@ public class NewOrder extends Pane implements OrderView {
             int quantity = input.getQuantity();
 
             OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
-            controller.edit(orderDetails);
+            controller.editOrderDetails(orderDetails);
         }
     }
 
     private void onRemoveClicked() {
+
+        int viewRowIndex = orderDetailsTable.getSelectedRow();
+        if (viewRowIndex == -1) {
+            return;
+        }
+
+        int rowIndex = orderDetailsTable.convertRowIndexToModel(viewRowIndex);
+        OrderDetails orderDetails = orderDetailsModel.getOrderDetails(rowIndex);
+        controller.removeBeverage(orderDetails.getBeverageId());
     }
 
     private void onOrderClicked() {
