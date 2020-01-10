@@ -1,6 +1,7 @@
 package orderapp.view.orders;
 
 import com.toedter.calendar.JDateChooser;
+import orderapp.model.beverage.BeverageList;
 import orderapp.state.Pane;
 import orderapp.state.State;
 import orderapp.state.StateManager;
@@ -78,7 +79,7 @@ public class NewOrder extends Pane {
     }
 
     private void onAddClicked() {
-        OrderDetailsInput input = OrderDetailsInput.newOrderDetails();
+        OrderDetailsInput input = OrderDetailsInput.newOrderDetails(BeverageList.getInstance().getBeverages());
         int option = JOptionPane.showConfirmDialog(
                 rootPanel,
                 input.getRootPanel(),
