@@ -6,4 +6,5 @@ public enum State {
     BEVERAGE,
     ORDER,
     NEW_ORDER,
+    EDIT_ORDER,
 }

@@ -8,6 +8,7 @@ import orderapp.state.StateManager;
 import orderapp.view.beverages.Beverages;
 import orderapp.view.home.Home;
 import orderapp.view.intro.Intro;
+import orderapp.view.orders.EditOrder;
 import orderapp.view.orders.NewOrder;
 import orderapp.view.orders.Orders;
 
@@ -126,5 +127,6 @@ public class MainFrame extends JFrame {
         stateManager.add(State.BEVERAGE, new Beverages());
         stateManager.add(State.ORDER, new Orders());
         stateManager.add(State.NEW_ORDER, new NewOrder());
+        stateManager.add(State.EDIT_ORDER, new EditOrder());
     }
 }
