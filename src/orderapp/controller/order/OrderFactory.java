@@ -1,6 +1,6 @@
 package orderapp.controller.order;
 
-import orderapp.model.orderdetails.OrderDetails;
+import orderapp.view.orders.OrderView;
 
 public class OrderFactory {
 
@@ -8,8 +8,8 @@ public class OrderFactory {
         return new OrderControllerImpl();
     }
 
-    public static NewOrderController newNewOrderController() {
-        return new NewOrderControllerImpl();
+    public static NewOrderController newNewOrderController(OrderView view) {
+        return new NewOrderControllerImpl(view);
     }
 
     private OrderFactory() {

@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-public class NewOrder extends Pane {
+public class NewOrder extends Pane implements OrderView {
 
     private JPanel rootPanel;
 
@@ -29,12 +29,13 @@ public class NewOrder extends Pane {
     private JButton cancelButton;
     private JButton editButton;
     private JLabel amountLabel;
+    private JTextArea descriptionField;
 
     private NewOrderController controller;
 
     public NewOrder() {
 
-        controller = OrderFactory.newNewOrderController();
+        controller = OrderFactory.newNewOrderController(this);
 
         setComponent(rootPanel);
 
@@ -127,5 +128,15 @@ public class NewOrder extends Pane {
 
     @Override
     public void onPaneClosed() {
+    }
+
+    @Override
+    public long getTime() {
+        return dateChooser.getDate().getTime();
+    }
+
+    @Override
+    public String getDescription() {
+        return descriptionField.getText().trim();
     }
 }

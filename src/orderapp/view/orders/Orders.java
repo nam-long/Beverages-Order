@@ -12,6 +12,7 @@ public class Orders extends Pane {
 
     private JPanel rootPanel;
     private JTable ordersTable;
+    private OrderTableModel orderTableModel;
     private JButton newButton;
     private JButton editButton;
     private JButton deleteButton;
@@ -28,6 +29,9 @@ public class Orders extends Pane {
     }
 
     private void initUiComponents() {
+
+        orderTableModel = new OrderTableModel();
+        ordersTable.setModel(orderTableModel);
 
         newButton.addActionListener(new ActionListener() {
             @Override

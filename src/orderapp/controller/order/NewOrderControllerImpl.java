@@ -6,6 +6,7 @@ import orderapp.model.order.OrderModelImpl;
 import orderapp.model.orderdetails.OrderDetails;
 import orderapp.state.State;
 import orderapp.state.StateManager;
+import orderapp.view.orders.OrderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,10 @@ public class NewOrderControllerImpl implements NewOrderController {
     private Order order = new Order();
 
     private OrderModel model = new OrderModelImpl();
+    private OrderView view;
 
-    public NewOrderControllerImpl() {
+    public NewOrderControllerImpl(OrderView view) {
+        this.view = view;
     }
 
     @Override
@@ -29,6 +32,8 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     @Override
     public void order() {
+        order.setTime(view.getTime());
+        order.setDescription(view.getDescription());
         if (order.getOrderDetailsList().size() > 0) {
             model.add(order);
             StateManager.getInstance().show(State.ORDER);
