@@ -37,6 +37,8 @@ public class OrderModelImpl implements OrderModel {
 
     @Override
     public void remove(int id) {
+        OrderDao dao = new OrderDaoImpl();
+        dao.delete(id);
         notifyObservers();
     }
 

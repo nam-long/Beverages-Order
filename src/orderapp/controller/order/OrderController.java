@@ -8,6 +8,8 @@ public interface OrderController {
 
     void newOrder();
 
+    void deleteOrder(int id);
+
     void registerObserver(ChangedOrderObserver observer);
 
     void unregisterObserver(ChangedOrderObserver observer);

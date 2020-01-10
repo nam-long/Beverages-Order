@@ -3,7 +3,7 @@ package orderapp.view.orders;
 import orderapp.controller.order.OrderController;
 import orderapp.controller.order.OrderFactory;
 import orderapp.model.ModelFactory;
-import orderapp.model.order.OrderModelImpl;
+import orderapp.model.order.Order;
 import orderapp.state.Pane;
 
 import javax.swing.*;
@@ -66,6 +66,12 @@ public class Orders extends Pane {
     }
 
     private void onDeleteClicked() {
+        int viewRowIndex = ordersTable.getSelectedRow();
+        if (viewRowIndex != -1) {
+            int rowIndex = ordersTable.convertRowIndexToModel(viewRowIndex);
+            Order order = orderTableModel.getOrder(rowIndex);
+            controller.deleteOrder(order.getId());
+        }
     }
 
     @Override

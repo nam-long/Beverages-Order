@@ -50,4 +50,8 @@ public class OrderTableModel extends AbstractTableModel implements ChangedOrderO
         this.orders.addAll(orders);
         this.fireTableDataChanged();
     }
+
+    public Order getOrder(int rowIndex) {
+        return orders.get(rowIndex);
+    }
 }

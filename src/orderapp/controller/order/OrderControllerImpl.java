@@ -24,6 +24,11 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
+    public void deleteOrder(int id) {
+        model.remove(id);
+    }
+
+    @Override
     public void registerObserver(ChangedOrderObserver observer) {
         model.registerObserver(observer);
     }
