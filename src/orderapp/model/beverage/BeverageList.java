@@ -43,6 +43,19 @@ public class BeverageList implements DataObserver<Beverage> {
         return null;
     }
 
+    public Beverage getBeverageByName(String name) {
+        return getBeverageByName(beverages, name);
+    }
+
+    public static Beverage getBeverageByName(List<Beverage> beverages, String name) {
+        for (Beverage beverage : beverages) {
+            if (beverage.getName().equalsIgnoreCase(name)) {
+                return beverage;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void onChangedData(List<Beverage> beverages) {
         this.beverages.clear();

@@ -13,7 +13,8 @@ public class OrderDetails {
     public OrderDetails() {
     }
 
-    public OrderDetails(int orderId, int beverageId, int quantity, float amount) {
+    public OrderDetails(int orderId, int beverageId, float beveragePrice, int quantity) {
+        amount = beveragePrice * quantity;
         internalInit(0, orderId, beverageId, quantity, amount);
     }
 

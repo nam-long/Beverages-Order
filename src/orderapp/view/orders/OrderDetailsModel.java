@@ -1,5 +1,6 @@
 package orderapp.view.orders;
 
+import orderapp.controller.order.ChangedOrderObserver;
 import orderapp.model.beverage.BeverageList;
 import orderapp.model.orderdetails.OrderDetails;
 
@@ -7,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailsModel extends AbstractTableModel {
+public class OrderDetailsModel extends AbstractTableModel implements ChangedOrderObserver {
 
     private static final String[] COLUMN_NAMES = {"Beverage", "Price", "Quantity"};
     public static final int BEVERAGE = 0;
@@ -35,11 +36,18 @@ public class OrderDetailsModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         OrderDetails orderDetails = orderDetailsList.get(rowIndex);
         if (columnIndex == BEVERAGE)
-            return BeverageList.getInstance().getBeverageById(orderDetails.getBeverageId());
+            return BeverageList.getInstance().getBeverageById(orderDetails.getBeverageId()).getName();
         else if (columnIndex == PRICE)
             return orderDetails.getAmount();
         else if (columnIndex == QUANTITY)
-            return 1;
+            return orderDetails.getQuantity();
         return null;
+    }
+
+    @Override
+    public void onChangedOrder(List<OrderDetails> orderDetailsList) {
+        this.orderDetailsList.clear();
+        this.orderDetailsList.addAll(orderDetailsList);
+        this.fireTableDataChanged();
     }
 }

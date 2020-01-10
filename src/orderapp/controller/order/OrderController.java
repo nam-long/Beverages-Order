@@ -1,4 +1,6 @@
 package orderapp.controller.order;
 
-public class OrderController {
+public interface OrderController {
+
+    void newOrder();
 }

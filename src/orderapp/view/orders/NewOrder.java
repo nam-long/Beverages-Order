@@ -1,7 +1,11 @@
 package orderapp.view.orders;
 
 import com.toedter.calendar.JDateChooser;
+import orderapp.controller.order.NewOrderController;
+import orderapp.controller.order.OrderFactory;
+import orderapp.model.beverage.Beverage;
 import orderapp.model.beverage.BeverageList;
+import orderapp.model.orderdetails.OrderDetails;
 import orderapp.state.Pane;
 import orderapp.state.State;
 import orderapp.state.StateManager;
@@ -26,7 +30,11 @@ public class NewOrder extends Pane {
     private JButton editButton;
     private JLabel amountLabel;
 
+    private NewOrderController controller;
+
     public NewOrder() {
+
+        controller = OrderFactory.newNewOrderController();
 
         setComponent(rootPanel);
 
@@ -41,6 +49,8 @@ public class NewOrder extends Pane {
 
         orderDetailsModel = new OrderDetailsModel();
         orderDetailsTable.setModel(orderDetailsModel);
+
+        controller.registerObserver(orderDetailsModel);
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -79,13 +89,21 @@ public class NewOrder extends Pane {
     }
 
     private void onAddClicked() {
+
         OrderDetailsInput input = OrderDetailsInput.newOrderDetails(BeverageList.getInstance().getBeverages());
+
         int option = JOptionPane.showConfirmDialog(
                 rootPanel,
                 input.getRootPanel(),
                 "Add Beverage",
                 JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
         if (option == JOptionPane.OK_OPTION) {
+            Beverage beverage = input.getBeverage();
+            int quantity = input.getQuantity();
+
+            OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
+            controller.add(orderDetails);
         }
     }
 

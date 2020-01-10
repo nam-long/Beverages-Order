@@ -1,8 +1,8 @@
 package orderapp.view.orders;
 
+import orderapp.controller.order.OrderController;
+import orderapp.controller.order.OrderFactory;
 import orderapp.state.Pane;
-import orderapp.state.State;
-import orderapp.state.StateManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,11 @@ public class Orders extends Pane {
     private JButton editButton;
     private JButton deleteButton;
 
+    private OrderController controller;
+
     public Orders() {
+
+        controller = OrderFactory.newOrderController();
 
         setComponent(rootPanel);
 
@@ -48,7 +52,7 @@ public class Orders extends Pane {
     }
 
     private void onNewClicked() {
-        StateManager.getInstance().show(State.NEW_ORDER);
+        controller.newOrder();
     }
 
     private void onEditClicked() {

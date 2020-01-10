@@ -1,6 +1,7 @@
 package orderapp.view.orders;
 
 import orderapp.model.beverage.Beverage;
+import orderapp.model.beverage.BeverageList;
 
 import javax.swing.*;
 import java.util.List;
@@ -37,8 +38,9 @@ public class OrderDetailsInput {
         return rootPanel;
     }
 
-    public String getBeverage() {
-        return (String) beverageField.getSelectedItem();
+    public Beverage getBeverage() {
+        String name =  (String) beverageField.getSelectedItem();
+        return BeverageList.getBeverageByName(beverages, name);
     }
 
     public int getQuantity() {
