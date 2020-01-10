@@ -1,11 +1,13 @@
 package orderapp.model.order;
 
-import orderapp.model.orderdetails.*;
+import orderapp.model.orderdetails.OrderDetails;
+import orderapp.model.orderdetails.OrderDetailsModel;
+import orderapp.model.orderdetails.OrderDetailsModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderModelImpl implements OrderModel {
+class OrderModelImpl implements OrderModel {
 
     private List<ChangedOrderObserver> observers = new ArrayList<>();
 
@@ -20,7 +22,7 @@ public class OrderModelImpl implements OrderModel {
         OrderDao orderDao = new OrderDaoImpl();
         orderDao.insert(order);
 
-        OrderDetailsModel model = new OrderDetailsModelImpl();
+        OrderDetailsModel model = OrderDetailsModelFactory.getInstance().getModel();
         List<OrderDetails> orderDetailsList = order.getOrderDetailsList();
         for (OrderDetails orderDetails : orderDetailsList) {
             orderDetails.setOrderId(order.getId());

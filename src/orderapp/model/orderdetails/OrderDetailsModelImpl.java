@@ -5,7 +5,7 @@ import orderapp.model.DataObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailsModelImpl implements OrderDetailsModel {
+class OrderDetailsModelImpl implements OrderDetailsModel {
 
     private List<DataObserver<OrderDetails>> observers = new ArrayList<>();
 

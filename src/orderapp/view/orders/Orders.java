@@ -2,8 +2,8 @@ package orderapp.view.orders;
 
 import orderapp.controller.order.OrderController;
 import orderapp.controller.order.OrderFactory;
-import orderapp.model.ModelFactory;
 import orderapp.model.order.Order;
+import orderapp.model.order.OrderModelFactory;
 import orderapp.state.Pane;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class Orders extends Pane {
 
     public Orders() {
 
-        controller = OrderFactory.newOrderController(ModelFactory.getInstance().getOrderModel());
+        controller = OrderFactory.newOrderController(OrderModelFactory.getInstance().getModel());
 
         setComponent(rootPanel);
 

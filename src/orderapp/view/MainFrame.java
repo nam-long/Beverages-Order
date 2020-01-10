@@ -2,7 +2,7 @@ package orderapp.view;
 
 import orderapp.model.Database;
 import orderapp.model.beverage.BeverageList;
-import orderapp.model.beverage.BeverageModelImpl;
+import orderapp.model.beverage.BeverageModelFactory;
 import orderapp.state.State;
 import orderapp.state.StateManager;
 import orderapp.view.beverages.Beverages;
@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initModels() {
-        BeverageList.getInstance().initiate(new BeverageModelImpl());
+        BeverageList.getInstance().initiate(BeverageModelFactory.getInstance().getModel());
     }
 
     private void initComponents() {

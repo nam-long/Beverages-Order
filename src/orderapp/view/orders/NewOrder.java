@@ -3,9 +3,9 @@ package orderapp.view.orders;
 import com.toedter.calendar.JDateChooser;
 import orderapp.controller.order.NewOrderController;
 import orderapp.controller.order.OrderFactory;
-import orderapp.model.ModelFactory;
 import orderapp.model.beverage.Beverage;
 import orderapp.model.beverage.BeverageList;
+import orderapp.model.order.OrderModelFactory;
 import orderapp.model.orderdetails.OrderDetails;
 import orderapp.state.Pane;
 import orderapp.state.State;
@@ -36,7 +36,7 @@ public class NewOrder extends Pane implements OrderView {
 
     public NewOrder() {
 
-        controller = OrderFactory.newNewOrderController(ModelFactory.getInstance().getOrderModel(), this);
+        controller = OrderFactory.newNewOrderController(OrderModelFactory.getInstance().getModel(), this);
 
         setComponent(rootPanel);
 

@@ -36,35 +36,40 @@ public class EditOrder extends Pane {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                onAddClicked();
             }
         });
 
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                onEditClicked();
             }
         });
 
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                onRemoveClicked();
             }
         });
 
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                onSaveClicked();
             }
         });
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                onCancelClicked();
             }
         });
     }
 
-    private void onNewClicked() {
+    private void onAddClicked() {
     }
 
     private void onEditClicked() {
@@ -74,6 +79,9 @@ public class EditOrder extends Pane {
     }
 
     private void onSaveClicked() {
+    }
+
+    private void onCancelClicked() {
     }
 
     @Override
