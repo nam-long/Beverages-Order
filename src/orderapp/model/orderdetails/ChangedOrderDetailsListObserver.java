@@ -1,6 +1,4 @@
-package orderapp.controller.order;
-
-import orderapp.model.orderdetails.OrderDetails;
+package orderapp.model.orderdetails;
 
 import java.util.List;
 

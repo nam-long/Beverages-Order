@@ -3,6 +3,7 @@ package orderapp.controller.order;
 import orderapp.model.order.Order;
 import orderapp.model.order.OrderModel;
 import orderapp.model.order.OrderModelImpl;
+import orderapp.model.orderdetails.ChangedOrderDetailsListObserver;
 import orderapp.model.orderdetails.OrderDetails;
 import orderapp.state.State;
 import orderapp.state.StateManager;

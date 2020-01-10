@@ -1,6 +1,6 @@
 package orderapp.view.orders;
 
-import orderapp.controller.order.ChangedOrderDetailsListObserver;
+import orderapp.model.orderdetails.ChangedOrderDetailsListObserver;
 import orderapp.model.beverage.BeverageList;
 import orderapp.model.orderdetails.OrderDetails;
 

@@ -1,5 +1,6 @@
 package orderapp.controller.order;
 
+import orderapp.model.orderdetails.ChangedOrderDetailsListObserver;
 import orderapp.model.orderdetails.OrderDetails;
 
 public interface NewOrderController {
