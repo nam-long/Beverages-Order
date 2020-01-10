@@ -83,7 +83,7 @@ public class OrderDaoImpl implements OrderDao {
                 long time = rs.getLong(2);
                 String description = rs.getString(3);
 
-                Order order = new Order(id, time, description);
+                Order order = Order.newInstance(id, time, description);
                 orders.add(order);
             }
         } catch (SQLException e) {

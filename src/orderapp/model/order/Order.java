@@ -12,14 +12,18 @@ public class Order {
     private String description;
     private List<OrderDetails> orderDetailsList = new ArrayList<>();
 
-    public Order() {
+    public static Order newInstance() {
+        return new Order();
     }
 
-    public Order(long time, String description) {
-        internalInit(0, time, description);
+    public static Order newInstance(int id, long time, String description) {
+        return new Order(id, time, description);
     }
 
-    public Order(int id, long time, String description) {
+    private Order() {
+    }
+
+    private Order(int id, long time, String description) {
         internalInit(id, time, description);
     }
 

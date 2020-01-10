@@ -27,7 +27,7 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     @Override
     public void newOrderInstance() {
-        order = new Order();
+        order = Order.newInstance();
         notifyObservers();
     }
 
