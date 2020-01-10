@@ -1,5 +1,6 @@
 package orderapp.controller.order;
 
+import orderapp.model.order.Order;
 import orderapp.model.orderdetails.OrderDetails;
 
 import java.util.ArrayList;
@@ -7,31 +8,17 @@ import java.util.List;
 
 public class NewOrderControllerImpl implements NewOrderController {
 
-    List<ChangedOrderObserver> observers = new ArrayList<>();
+    private List<ChangedOrderObserver> observers = new ArrayList<>();
 
-    List<OrderDetails> orderDetailsList = new ArrayList<>();
+    private Order order = new Order();
 
     public NewOrderControllerImpl() {
     }
 
     @Override
     public void add(OrderDetails newOrderDetails) {
-        OrderDetails orderDetails = searchOrderDetails(newOrderDetails.getBeverageId());
-        if (orderDetails == null) {
-            orderDetailsList.add(newOrderDetails);
-        } else {
-            int quantity = orderDetails.getQuantity() + newOrderDetails.getQuantity();
-            orderDetails.setQuantity(quantity);
-        }
+        order.addOrderDetails(newOrderDetails);
         notifyObservers();
-    }
-
-    private OrderDetails searchOrderDetails(int beverageId) {
-        for (OrderDetails orderDetails : orderDetailsList) {
-            if (beverageId == orderDetails.getBeverageId())
-                return orderDetails;
-        }
-        return null;
     }
 
     @Override
@@ -47,7 +34,7 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     private void notifyObservers() {
         for (ChangedOrderObserver observer : observers) {
-            observer.onChangedOrder(orderDetailsList);
+            observer.onChangedOrder(order.getOrderDetailsList());
         }
     }
 }

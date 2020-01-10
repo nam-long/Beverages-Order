@@ -1,12 +1,16 @@
 package orderapp.model.order;
 
-import java.util.Objects;
+import orderapp.model.orderdetails.OrderDetails;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 
     private int id;
     private long time;
     private String description;
+    private List<OrderDetails> orderDetailsList = new ArrayList<>();
 
     public Order() {
     }
@@ -49,18 +53,29 @@ public class Order {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id &&
-                time == order.time &&
-                Objects.equals(description, order.description);
+    public List<OrderDetails> getOrderDetailsList() {
+        return orderDetailsList;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, time, description);
+    public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
+        this.orderDetailsList = orderDetailsList;
+    }
+
+    public void addOrderDetails(OrderDetails newOrderDetails) {
+        OrderDetails orderDetails = searchOrderDetails(newOrderDetails.getBeverageId());
+        if (orderDetails == null) {
+            orderDetailsList.add(newOrderDetails);
+        } else {
+            int quantity = orderDetails.getQuantity() + newOrderDetails.getQuantity();
+            orderDetails.setQuantity(quantity);
+        }
+    }
+
+    private OrderDetails searchOrderDetails(int beverageId) {
+        for (OrderDetails orderDetails : orderDetailsList) {
+            if (beverageId == orderDetails.getBeverageId())
+                return orderDetails;
+        }
+        return null;
     }
 }
