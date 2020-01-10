@@ -29,8 +29,10 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     @Override
     public void order() {
-        model.add(order);
-        StateManager.getInstance().show(State.ORDER);
+        if (order.getOrderDetailsList().size() > 0) {
+            model.add(order);
+            StateManager.getInstance().show(State.ORDER);
+        }
     }
 
     @Override
