@@ -62,22 +62,24 @@ public class Order {
     }
 
     public void addOrderDetails(OrderDetails newOrderDetails) {
-        OrderDetails orderDetails = searchOrderDetails(newOrderDetails.getBeverageId());
+        OrderDetails orderDetails = searchOrderDetailsByBeverageId(newOrderDetails.getBeverageId());
         if (orderDetails == null) {
             orderDetailsList.add(newOrderDetails);
         } else {
+            float price = orderDetails.getAmount() / orderDetails.getQuantity();
             int quantity = orderDetails.getQuantity() + newOrderDetails.getQuantity();
             orderDetails.setQuantity(quantity);
+            orderDetails.setAmount(price * quantity);
         }
     }
 
-    public void editOrderDetails(OrderDetails editedOrderDetails) {
-        OrderDetails orderDetails = searchOrderDetails(editedOrderDetails.getBeverageId());
+    public void editOrderDetails(OrderDetails newOrderDetails) {
+        OrderDetails orderDetails = searchOrderDetailsByBeverageId(newOrderDetails.getBeverageId());
         if (orderDetails != null) {
-            int quantity = editedOrderDetails.getQuantity();
-            float price = orderDetails.getAmount() / orderDetails.getQuantity();
+            int quantity = newOrderDetails.getQuantity();
+            float oldPrice = orderDetails.getAmount() / orderDetails.getQuantity();
             orderDetails.setQuantity(quantity);
-            orderDetails.setAmount(editedOrderDetails.getQuantity() * price);
+            orderDetails.setAmount(oldPrice * quantity);
         }
     }
 
@@ -99,7 +101,7 @@ public class Order {
         }
     }
 
-    private OrderDetails searchOrderDetails(int beverageId) {
+    private OrderDetails searchOrderDetailsByBeverageId(int beverageId) {
         for (OrderDetails orderDetails : orderDetailsList) {
             if (beverageId == orderDetails.getBeverageId())
                 return orderDetails;

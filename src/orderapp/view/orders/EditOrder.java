@@ -24,6 +24,7 @@ public class EditOrder extends Pane {
     private JLabel amountField;
 
     public EditOrder() {
+        setComponent(rootPanel);
         initUiComponents();
     }
 
