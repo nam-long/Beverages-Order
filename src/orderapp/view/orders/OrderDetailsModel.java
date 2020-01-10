@@ -9,9 +9,10 @@ import java.util.List;
 
 public class OrderDetailsModel extends AbstractTableModel {
 
-    private static final String[] COLUMN_NAMES = {"Beverage", "Price"};
+    private static final String[] COLUMN_NAMES = {"Beverage", "Price", "Quantity"};
     public static final int BEVERAGE = 0;
     public static final int PRICE = 1;
+    public static final int QUANTITY = 2;
 
     private List<OrderDetails> orderDetailsList = new ArrayList<>();
 
@@ -37,6 +38,8 @@ public class OrderDetailsModel extends AbstractTableModel {
             return BeverageList.getInstance().getBeverageById(orderDetails.getBeverageId());
         else if (columnIndex == PRICE)
             return orderDetails.getPrice();
+        else if (columnIndex == QUANTITY)
+            return 1;
         return null;
     }
 }

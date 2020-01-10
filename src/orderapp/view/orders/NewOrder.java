@@ -78,6 +78,14 @@ public class NewOrder extends Pane {
     }
 
     private void onAddClicked() {
+        OrderDetailsInput input = OrderDetailsInput.newOrderDetails();
+        int option = JOptionPane.showConfirmDialog(
+                rootPanel,
+                input.getRootPanel(),
+                "Add Beverage",
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (option == JOptionPane.OK_OPTION) {
+        }
     }
 
     private void onEditClicked() {
