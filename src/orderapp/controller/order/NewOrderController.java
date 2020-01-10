@@ -8,7 +8,7 @@ public interface NewOrderController {
 
     void order();
 
-    void registerObserver(ChangedOrderObserver observer);
+    void registerObserver(ChangedOrderDetailsListObserver observer);
 
-    void unregisterObserver(ChangedOrderObserver observer);
+    void unregisterObserver(ChangedOrderDetailsListObserver observer);
 }

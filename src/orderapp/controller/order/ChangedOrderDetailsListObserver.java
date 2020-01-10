@@ -4,7 +4,7 @@ import orderapp.model.orderdetails.OrderDetails;
 
 import java.util.List;
 
-public interface ChangedOrderObserver {
+public interface ChangedOrderDetailsListObserver {
 
     void onChangedOrder(List<OrderDetails> orderDetailsList);
 }

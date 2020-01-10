@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NewOrderControllerImpl implements NewOrderController {
 
-    private List<ChangedOrderObserver> observers = new ArrayList<>();
+    private List<ChangedOrderDetailsListObserver> observers = new ArrayList<>();
 
     private Order order = new Order();
 
@@ -41,18 +41,18 @@ public class NewOrderControllerImpl implements NewOrderController {
     }
 
     @Override
-    public void registerObserver(ChangedOrderObserver observer) {
+    public void registerObserver(ChangedOrderDetailsListObserver observer) {
         if (!observers.contains(observer))
             observers.add(observer);
     }
 
     @Override
-    public void unregisterObserver(ChangedOrderObserver observer) {
+    public void unregisterObserver(ChangedOrderDetailsListObserver observer) {
         observers.remove(observer);
     }
 
     private void notifyObservers() {
-        for (ChangedOrderObserver observer : observers) {
+        for (ChangedOrderDetailsListObserver observer : observers) {
             observer.onChangedOrder(order.getOrderDetailsList());
         }
     }

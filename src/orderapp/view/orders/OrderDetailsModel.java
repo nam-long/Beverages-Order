@@ -1,6 +1,6 @@
 package orderapp.view.orders;
 
-import orderapp.controller.order.ChangedOrderObserver;
+import orderapp.controller.order.ChangedOrderDetailsListObserver;
 import orderapp.model.beverage.BeverageList;
 import orderapp.model.orderdetails.OrderDetails;
 
@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailsModel extends AbstractTableModel implements ChangedOrderObserver {
+public class OrderDetailsModel extends AbstractTableModel implements ChangedOrderDetailsListObserver {
 
     private static final String[] COLUMN_NAMES = {"Beverage", "Price", "Quantity"};
     public static final int BEVERAGE = 0;
