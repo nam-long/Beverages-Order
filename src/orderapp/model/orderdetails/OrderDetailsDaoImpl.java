@@ -15,7 +15,7 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
     public void insert(OrderDetails orderDetails) {
 
         Database db = new Database();
-        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,Quantity,Amount) VALUES(?,?,?,?,?)";
+        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,Quantity,Amount) VALUES(?,?,?,?)";
 
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_INSERT_ORDER_DETAILS, Statement.RETURN_GENERATED_KEYS);

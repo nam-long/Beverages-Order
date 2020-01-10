@@ -6,6 +6,8 @@ public interface NewOrderController {
 
     void add(OrderDetails orderDetails);
 
+    void order();
+
     void registerObserver(ChangedOrderObserver observer);
 
     void unregisterObserver(ChangedOrderObserver observer);

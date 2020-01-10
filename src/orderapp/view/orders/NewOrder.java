@@ -114,7 +114,7 @@ public class NewOrder extends Pane {
     }
 
     private void onOrderClicked() {
-        StateManager.getInstance().show(State.ORDER);
+        controller.order();
     }
 
     private void onCancelClicked() {

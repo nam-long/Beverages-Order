@@ -1,7 +1,11 @@
 package orderapp.controller.order;
 
 import orderapp.model.order.Order;
+import orderapp.model.order.OrderModel;
+import orderapp.model.order.OrderModelImpl;
 import orderapp.model.orderdetails.OrderDetails;
+import orderapp.state.State;
+import orderapp.state.StateManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +16,8 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     private Order order = new Order();
 
+    private OrderModel model = new OrderModelImpl();
+
     public NewOrderControllerImpl() {
     }
 
@@ -19,6 +25,12 @@ public class NewOrderControllerImpl implements NewOrderController {
     public void add(OrderDetails newOrderDetails) {
         order.addOrderDetails(newOrderDetails);
         notifyObservers();
+    }
+
+    @Override
+    public void order() {
+        model.add(order);
+        StateManager.getInstance().show(State.ORDER);
     }
 
     @Override
