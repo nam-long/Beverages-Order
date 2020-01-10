@@ -15,7 +15,7 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     private List<ChangedOrderDetailsListObserver> observers = new ArrayList<>();
 
-    private Order order = new Order();
+    private Order order;
 
     private OrderModel model;
     private OrderView view;
@@ -23,6 +23,17 @@ public class NewOrderControllerImpl implements NewOrderController {
     public NewOrderControllerImpl(OrderModel model, OrderView view) {
         this.model = model;
         this.view = view;
+    }
+
+    @Override
+    public void newOrderInstance() {
+        order = new Order();
+        notifyObservers();
+    }
+
+    @Override
+    public void releaseOrderInstance() {
+        order = null;
     }
 
     @Override

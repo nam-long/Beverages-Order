@@ -158,10 +158,12 @@ public class NewOrder extends Pane implements OrderView {
 
     @Override
     public void onPaneOpened() {
+        controller.newOrderInstance();
     }
 
     @Override
     public void onPaneClosed() {
+        controller.releaseOrderInstance();
     }
 
     @Override

@@ -5,6 +5,10 @@ import orderapp.model.orderdetails.OrderDetails;
 
 public interface NewOrderController {
 
+    void newOrderInstance();
+
+    void releaseOrderInstance();
+
     void addOrderDetails(OrderDetails orderDetails);
 
     void editOrderDetails(OrderDetails orderDetails);
