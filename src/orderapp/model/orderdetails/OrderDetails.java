@@ -7,24 +7,26 @@ public class OrderDetails {
     private int id;
     private int orderId;
     private int beverageId;
-    private float price;
+    private int quantity;
+    private float amount;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(int orderId, int beverageId, float price) {
-        internalInit(0, orderId, beverageId, price);
+    public OrderDetails(int orderId, int beverageId, int quantity, float amount) {
+        internalInit(0, orderId, beverageId, quantity, amount);
     }
 
-    public OrderDetails(int id, int orderId, int beverageId, float price) {
-        internalInit(id, orderId, beverageId, price);
+    public OrderDetails(int id, int orderId, int beverageId, int quantity, float amount) {
+        internalInit(id, orderId, beverageId, quantity, amount);
     }
 
-    private void internalInit(int id, int orderId, int beverageId, float price) {
+    private void internalInit(int id, int orderId, int beverageId, int quantity, float amount) {
         this.id = id;
         this.orderId = orderId;
         this.beverageId = beverageId;
-        this.price = price;
+        this.quantity = quantity;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -51,12 +53,20 @@ public class OrderDetails {
         this.beverageId = beverageId;
     }
 
-    public float getPrice() {
-        return price;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -67,11 +77,12 @@ public class OrderDetails {
         return id == that.id &&
                 orderId == that.orderId &&
                 beverageId == that.beverageId &&
-                Float.compare(that.price, price) == 0;
+                quantity == that.quantity &&
+                Float.compare(that.amount, amount) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderId, beverageId, price);
+        return Objects.hash(id, orderId, beverageId, quantity, amount);
     }
 }

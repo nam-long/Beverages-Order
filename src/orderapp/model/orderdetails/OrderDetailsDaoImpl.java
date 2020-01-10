@@ -15,13 +15,14 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
     public void insert(OrderDetails orderDetails) {
 
         Database db = new Database();
-        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,Price) VALUES(?,?,?,?)";
+        String SQL_INSERT_ORDER_DETAILS = "INSERT INTO OrderDetails(OrderId,BeverageId,Quantity,Amount) VALUES(?,?,?,?,?)";
 
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_INSERT_ORDER_DETAILS, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, orderDetails.getOrderId());
             ps.setInt(2, orderDetails.getBeverageId());
-            ps.setFloat(3, orderDetails.getPrice());
+            ps.setInt(3, orderDetails.getQuantity());
+            ps.setFloat(4, orderDetails.getAmount());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -40,14 +41,15 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
     public void update(OrderDetails orderDetails) {
 
         Database db = new Database();
-        final String SQL_UPDATE_ORDER_DETAILS_BY_ID = "UPDATE OrderDetails SET OrderId=?, BeverageId=?,Price=? WHERE Id=?";
+        final String SQL_UPDATE_ORDER_DETAILS_BY_ID = "UPDATE OrderDetails SET OrderId=?,BeverageId=?,Quantity=?,Amount=? WHERE Id=?";
 
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_UPDATE_ORDER_DETAILS_BY_ID);
             ps.setInt(1, orderDetails.getOrderId());
             ps.setInt(2, orderDetails.getBeverageId());
-            ps.setFloat(3, orderDetails.getPrice());
-            ps.setInt(4, orderDetails.getId());
+            ps.setInt(3, orderDetails.getQuantity());
+            ps.setFloat(4, orderDetails.getAmount());
+            ps.setInt(5, orderDetails.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,9 +89,10 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
                 int id = rs.getInt(1);
                 int orderId = rs.getInt(2);
                 int beverageId = rs.getInt(3);
-                float price = rs.getFloat(4);
+                int quantity = rs.getInt(4);
+                float amount = rs.getFloat(5);
 
-                OrderDetails orderDetails = new OrderDetails(id, orderId, beverageId, price);
+                OrderDetails orderDetails = new OrderDetails(id, orderId, beverageId, quantity, amount);
                 orderDetailsList.add(orderDetails);
             }
         } catch (SQLException e) {

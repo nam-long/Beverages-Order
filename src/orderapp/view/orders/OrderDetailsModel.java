@@ -37,7 +37,7 @@ public class OrderDetailsModel extends AbstractTableModel {
         if (columnIndex == BEVERAGE)
             return BeverageList.getInstance().getBeverageById(orderDetails.getBeverageId());
         else if (columnIndex == PRICE)
-            return orderDetails.getPrice();
+            return orderDetails.getAmount();
         else if (columnIndex == QUANTITY)
             return 1;
         return null;
