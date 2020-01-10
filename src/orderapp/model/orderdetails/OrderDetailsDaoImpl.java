@@ -102,4 +102,35 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
         db.close();
         return orderDetailsList;
     }
+
+    @Override
+    public List<OrderDetails> getAllOrderDetailsByOrderId(int orderId) {
+
+        List<OrderDetails> orderDetailsList = new ArrayList<>();
+        Database db = new Database();
+
+        final String SQL_SELECT_ALL_ORDER_DETAILS = "SELECT * FROM OrderDetails WHERE OrderId=?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(SQL_SELECT_ALL_ORDER_DETAILS);
+            ps.setInt(1, orderId);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int id = rs.getInt(1);
+                int orderID = rs.getInt(2);
+                int beverageId = rs.getInt(3);
+                int quantity = rs.getInt(4);
+                float amount = rs.getFloat(5);
+
+                OrderDetails orderDetails = new OrderDetails(id, orderID, beverageId, quantity, amount);
+                orderDetailsList.add(orderDetails);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        db.close();
+        return orderDetailsList;
+    }
 }

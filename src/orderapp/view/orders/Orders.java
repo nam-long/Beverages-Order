@@ -63,6 +63,12 @@ public class Orders extends Pane {
     }
 
     private void onEditClicked() {
+        int viewRowIndex = ordersTable.getSelectedRow();
+        if (viewRowIndex != -1) {
+            int rowIndex = ordersTable.convertRowIndexToModel(viewRowIndex);
+            Order order = orderTableModel.getOrder(rowIndex);
+            controller.editOrder(order);
+        }
     }
 
     private void onDeleteClicked() {
@@ -75,7 +81,7 @@ public class Orders extends Pane {
     }
 
     @Override
-    public void onPaneOpened() {
+    public void onPaneOpened(Object bundle) {
         controller.pullOrders();
     }
 

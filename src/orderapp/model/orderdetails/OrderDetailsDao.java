@@ -11,4 +11,6 @@ public interface OrderDetailsDao {
     void delete(int id);
 
     List<OrderDetails> getAllOrderDetails();
+
+    List<OrderDetails> getAllOrderDetailsByOrderId(int orderId);
 }

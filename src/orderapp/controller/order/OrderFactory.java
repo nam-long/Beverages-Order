@@ -13,6 +13,10 @@ public class OrderFactory {
         return new NewOrderControllerImpl(model, view);
     }
 
+    public static EditOrderController newEditOrderController(OrderModel model, OrderView view) {
+        return new EditOrderControllerImpl(model, view);
+    }
+
     private OrderFactory() {
     }
 }

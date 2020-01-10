@@ -14,7 +14,7 @@ public class Home extends Pane {
     }
 
     @Override
-    public void onPaneOpened() {
+    public void onPaneOpened(Object bundle) {
     }
 
     @Override

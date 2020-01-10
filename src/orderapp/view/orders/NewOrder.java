@@ -157,7 +157,7 @@ public class NewOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void onPaneOpened() {
+    public void onPaneOpened(Object bundle) {
         controller.newOrderInstance();
     }
 
@@ -167,12 +167,30 @@ public class NewOrder extends Pane implements OrderView {
     }
 
     @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(int id) {
+    }
+
+    @Override
     public long getTime() {
         return dateChooser.getDate().getTime();
     }
 
     @Override
+    public void setTime(long time) {
+    }
+
+    @Override
     public String getDescription() {
         return descriptionField.getText().trim();
+    }
+
+    @Override
+    public void setDescription(String description) {
+
     }
 }

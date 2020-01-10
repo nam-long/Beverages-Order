@@ -36,6 +36,10 @@ public class StateManager {
     }
 
     public void show(State state) {
+        show(state, null);
+    }
+
+    public void show(State state, Object bundle) {
 
         Pane current = panes.get(state);
         if (current != null) {
@@ -48,7 +52,7 @@ public class StateManager {
                     pane.onPaneClosed();
                 }
             }
-            current.onPaneOpened();
+            current.onPaneOpened(bundle);
             current.setActive(true);
         }
     }

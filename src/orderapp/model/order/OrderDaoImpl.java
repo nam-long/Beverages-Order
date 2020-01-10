@@ -1,6 +1,9 @@
 package orderapp.model.order;
 
 import orderapp.model.Database;
+import orderapp.model.orderdetails.OrderDetails;
+import orderapp.model.orderdetails.OrderDetailsDao;
+import orderapp.model.orderdetails.OrderDetailsDaoImpl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,9 +72,8 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getAllOrders() {
 
-        List<Order> orders = new ArrayList<>();
         Database db = new Database();
-
+        List<Order> orders = new ArrayList<>();
         final String SQL_SELECT_ALL_ORDERS = "SELECT * FROM Orders";
         try {
             Statement statement = db.getConnection().createStatement();
@@ -89,8 +91,19 @@ public class OrderDaoImpl implements OrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         db.close();
+
+        addOrderDetailsList(orders);
         return orders;
+    }
+
+    private void addOrderDetailsList(List<Order> orders) {
+
+        OrderDetailsDao dao = new OrderDetailsDaoImpl();
+        for (Order order : orders) {
+            List<OrderDetails> list = dao.getAllOrderDetailsByOrderId(order.getId());
+            order.getOrderDetailsList().clear();
+            order.getOrderDetailsList().addAll(list);
+        }
     }
 }

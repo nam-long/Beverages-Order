@@ -15,7 +15,7 @@ public class Intro extends Pane {
     }
 
     @Override
-    public void onPaneOpened() {
+    public void onPaneOpened(Object bundle) {
 
         Thread thread = new Thread(new Runnable() {
             @Override

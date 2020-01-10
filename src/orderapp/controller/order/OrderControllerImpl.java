@@ -1,6 +1,7 @@
 package orderapp.controller.order;
 
 import orderapp.model.order.ChangedOrderObserver;
+import orderapp.model.order.Order;
 import orderapp.model.order.OrderModel;
 import orderapp.state.State;
 import orderapp.state.StateManager;
@@ -21,6 +22,11 @@ public class OrderControllerImpl implements OrderController {
     @Override
     public void newOrder() {
         StateManager.getInstance().show(State.NEW_ORDER);
+    }
+
+    @Override
+    public void editOrder(Order order) {
+        StateManager.getInstance().show(State.EDIT_ORDER, order);
     }
 
     @Override
