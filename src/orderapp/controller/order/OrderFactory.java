@@ -1,15 +1,16 @@
 package orderapp.controller.order;
 
+import orderapp.model.order.OrderModel;
 import orderapp.view.orders.OrderView;
 
 public class OrderFactory {
 
-    public static OrderController newOrderController() {
-        return new OrderControllerImpl();
+    public static OrderController newOrderController(OrderModel model) {
+        return new OrderControllerImpl(model);
     }
 
-    public static NewOrderController newNewOrderController(OrderView view) {
-        return new NewOrderControllerImpl(view);
+    public static NewOrderController newNewOrderController(OrderModel model, OrderView view) {
+        return new NewOrderControllerImpl(model, view);
     }
 
     private OrderFactory() {

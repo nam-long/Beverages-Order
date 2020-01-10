@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface OrderModel {
 
+    void pullOrders();
+
     void add(Order order);
 
     void edit(Order order);
@@ -11,4 +13,9 @@ public interface OrderModel {
     void remove(int id);
 
     List<Order> getAllOrders();
+
+    void registerObserver(ChangedOrderObserver observer);
+
+    void unregisterObserver(ChangedOrderObserver observer);
+
 }

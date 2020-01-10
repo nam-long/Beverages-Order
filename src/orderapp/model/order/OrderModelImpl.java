@@ -7,6 +7,13 @@ import java.util.List;
 
 public class OrderModelImpl implements OrderModel {
 
+    private List<ChangedOrderObserver> observers = new ArrayList<>();
+
+    @Override
+    public void pullOrders() {
+        notifyObservers();
+    }
+
     @Override
     public void add(Order order) {
 
@@ -19,19 +26,41 @@ public class OrderModelImpl implements OrderModel {
             orderDetails.setOrderId(order.getId());
             model.add(orderDetails);
         }
+
+        notifyObservers();
     }
 
     @Override
     public void edit(Order order) {
+        notifyObservers();
     }
 
     @Override
     public void remove(int id) {
+        notifyObservers();
     }
 
     @Override
     public List<Order> getAllOrders() {
-        List<Order> orders = new ArrayList<>();
-        return orders;
+        OrderDao dao = new OrderDaoImpl();
+        return dao.getAllOrders();
+    }
+
+    @Override
+    public void registerObserver(ChangedOrderObserver observer) {
+        if (!observers.contains(observer))
+            observers.add(observer);
+    }
+
+    @Override
+    public void unregisterObserver(ChangedOrderObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        List<Order> orders = getAllOrders();
+        for (ChangedOrderObserver observer : observers) {
+            observer.onChangedOrder(orders);
+        }
     }
 }

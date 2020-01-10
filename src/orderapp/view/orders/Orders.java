@@ -2,6 +2,8 @@ package orderapp.view.orders;
 
 import orderapp.controller.order.OrderController;
 import orderapp.controller.order.OrderFactory;
+import orderapp.model.ModelFactory;
+import orderapp.model.order.OrderModelImpl;
 import orderapp.state.Pane;
 
 import javax.swing.*;
@@ -21,7 +23,7 @@ public class Orders extends Pane {
 
     public Orders() {
 
-        controller = OrderFactory.newOrderController();
+        controller = OrderFactory.newOrderController(ModelFactory.getInstance().getOrderModel());
 
         setComponent(rootPanel);
 
@@ -32,6 +34,7 @@ public class Orders extends Pane {
 
         orderTableModel = new OrderTableModel();
         ordersTable.setModel(orderTableModel);
+        controller.registerObserver(orderTableModel);
 
         newButton.addActionListener(new ActionListener() {
             @Override
@@ -67,6 +70,7 @@ public class Orders extends Pane {
 
     @Override
     public void onPaneOpened() {
+        controller.pullOrders();
     }
 
     @Override

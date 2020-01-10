@@ -18,10 +18,11 @@ public class NewOrderControllerImpl implements NewOrderController {
 
     private Order order = new Order();
 
-    private OrderModel model = new OrderModelImpl();
+    private OrderModel model;
     private OrderView view;
 
-    public NewOrderControllerImpl(OrderView view) {
+    public NewOrderControllerImpl(OrderModel model, OrderView view) {
+        this.model = model;
         this.view = view;
     }
 
