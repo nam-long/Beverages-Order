@@ -56,4 +56,22 @@ public class StateManager {
             current.setActive(true);
         }
     }
+
+    public void pause() {
+
+        for (Pane pane : panes.values()) {
+            if (pane.isActive()) {
+                pane.onPanePaused();
+            }
+        }
+    }
+
+    public void resume() {
+
+        for (Pane pane : panes.values()) {
+            if (pane.isActive()) {
+                pane.onPaneResume();
+            }
+        }
+    }
 }

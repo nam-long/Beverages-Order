@@ -25,10 +25,18 @@ public abstract class Pane implements PaneListener {
     }
 
     @Override
+    public void onPaneOpened(Object param) {
+    }
+
+    @Override
     public void onPaneResume() {
     }
 
     @Override
     public void onPanePaused() {
+    }
+
+    @Override
+    public void onPaneClosed() {
     }
 }

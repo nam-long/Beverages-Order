@@ -105,11 +105,7 @@ public class Beverages extends Pane {
     }
 
     @Override
-    public void onPaneOpened(Object bundle) {
+    public void onPaneOpened(Object param) {
         controller.pullBeverages();
-    }
-
-    @Override
-    public void onPaneClosed() {
     }
 }

@@ -12,12 +12,4 @@ public class Home extends Pane {
 
         setComponent(rootPanel);
     }
-
-    @Override
-    public void onPaneOpened(Object bundle) {
-    }
-
-    @Override
-    public void onPaneClosed() {
-    }
 }

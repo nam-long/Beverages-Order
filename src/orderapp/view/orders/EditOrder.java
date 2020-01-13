@@ -114,10 +114,6 @@ public class EditOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void onPaneClosed() {
-    }
-
-    @Override
     public int getId() {
         return 0;
     }

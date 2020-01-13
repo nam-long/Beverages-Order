@@ -84,8 +84,4 @@ public class Orders extends Pane {
     public void onPaneOpened(Object param) {
         controller.pullOrders();
     }
-
-    @Override
-    public void onPaneClosed() {
-    }
 }
