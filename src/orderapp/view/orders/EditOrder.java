@@ -102,9 +102,9 @@ public class EditOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void onPaneOpened(Object bundle) {
+    public void onPaneOpened(Object param) {
 
-        Order order = (Order) bundle;
+        Order order = (Order) param;
 
         idField.setText(String.valueOf(order.getId()));
         dateChooser.setDate(new Date(order.getTime()));

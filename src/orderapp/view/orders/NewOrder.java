@@ -157,7 +157,7 @@ public class NewOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void onPaneOpened(Object bundle) {
+    public void onPaneOpened(Object param) {
         controller.newOrderInstance();
     }
 

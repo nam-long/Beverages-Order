@@ -81,7 +81,7 @@ public class Orders extends Pane {
     }
 
     @Override
-    public void onPaneOpened(Object bundle) {
+    public void onPaneOpened(Object param) {
         controller.pullOrders();
     }
 

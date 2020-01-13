@@ -2,7 +2,7 @@ package orderapp.state;
 
 public interface PaneListener {
 
-    void onPaneOpened(Object bundle);
+    void onPaneOpened(Object param);
 
     void onPaneResume();
 
