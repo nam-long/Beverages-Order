@@ -25,7 +25,7 @@ public class Intro extends Pane {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                StateManager.getInstance().show(State.BEVERAGE);
+                StateManager.getInstance().show(State.ORDER);
             }
         });
         thread.start();
