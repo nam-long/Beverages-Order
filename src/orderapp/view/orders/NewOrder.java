@@ -3,7 +3,6 @@ package orderapp.view.orders;
 import com.toedter.calendar.JDateChooser;
 import orderapp.controller.order.NewOrderController;
 import orderapp.controller.order.OrderFactory;
-import orderapp.model.beverage.Beverage;
 import orderapp.model.beverage.BeverageList;
 import orderapp.model.order.OrderModelFactory;
 import orderapp.model.orderdetails.OrderDetails;
@@ -106,51 +105,44 @@ public class NewOrder extends Pane implements OrderView {
                 JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
-            Beverage beverage = input.getBeverage();
-            int quantity = input.getQuantity();
-
-            OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
+            OrderDetails orderDetails = input.getNewOrderDetails();
             controller.addOrderDetails(orderDetails);
         }
     }
 
     private void onEditClicked() {
 
-        int viewRowIndex = orderDetailsTable.getSelectedRow();
-        if (viewRowIndex == -1) {
-            return;
-        }
+        int rowIndex = getSelectedRowIndex();
+        if (rowIndex != -1) {
+            OrderDetailsInput input = OrderDetailsInput.editOrderDetails(
+                    BeverageList.getInstance().getBeverages(),
+                    orderDetailsModel.getOrderDetails(rowIndex));
 
-        int rowIndex = orderDetailsTable.convertRowIndexToModel(viewRowIndex);
-        OrderDetailsInput input = OrderDetailsInput.editOrderDetails(
-                BeverageList.getInstance().getBeverages(),
-                orderDetailsModel.getOrderDetails(rowIndex));
+            int option = JOptionPane.showConfirmDialog(
+                    rootPanel,
+                    input.getRootPanel(),
+                    "Edit Order",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-        int option = JOptionPane.showConfirmDialog(
-                rootPanel,
-                input.getRootPanel(),
-                "Edit Order",
-                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-        if (option == JOptionPane.OK_OPTION) {
-            Beverage beverage = input.getBeverage();
-            int quantity = input.getQuantity();
-
-            OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
-            controller.editOrderDetails(orderDetails);
+            if (option == JOptionPane.OK_OPTION) {
+                OrderDetails orderDetails = input.getNewOrderDetails();
+                controller.editOrderDetails(orderDetails);
+            }
         }
     }
 
     private void onRemoveClicked() {
 
-        int viewRowIndex = orderDetailsTable.getSelectedRow();
-        if (viewRowIndex == -1) {
-            return;
+        int rowIndex = getSelectedRowIndex();
+        if (rowIndex != -1) {
+            OrderDetails orderDetails = orderDetailsModel.getOrderDetails(rowIndex);
+            controller.removeBeverage(orderDetails.getBeverageId());
         }
+    }
 
-        int rowIndex = orderDetailsTable.convertRowIndexToModel(viewRowIndex);
-        OrderDetails orderDetails = orderDetailsModel.getOrderDetails(rowIndex);
-        controller.removeBeverage(orderDetails.getBeverageId());
+    private int getSelectedRowIndex() {
+        int viewRowIndex = orderDetailsTable.getSelectedRow();
+        return viewRowIndex != -1 ? orderDetailsTable.convertRowIndexToModel(viewRowIndex) : -1;
     }
 
     private void onOrderClicked() {

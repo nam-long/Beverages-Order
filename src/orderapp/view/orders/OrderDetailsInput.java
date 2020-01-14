@@ -66,4 +66,11 @@ public class OrderDetailsInput {
         }
         return quantity;
     }
+
+    public OrderDetails getNewOrderDetails() {
+        Beverage beverage = getBeverage();
+        int quantity = getQuantity();
+        OrderDetails orderDetails = new OrderDetails(0, beverage.getId(), beverage.getPrice(), quantity);
+        return orderDetails;
+    }
 }

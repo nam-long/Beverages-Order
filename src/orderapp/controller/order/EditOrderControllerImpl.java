@@ -26,6 +26,7 @@ class EditOrderControllerImpl implements EditOrderController {
     @Override
     public void setOrder(Order order) {
         this.order = order;
+        notifyObservers();
     }
 
     @Override
@@ -50,6 +51,10 @@ class EditOrderControllerImpl implements EditOrderController {
     public void removeBeverage(int id) {
         order.removeBeverage(id);
         notifyObservers();
+    }
+
+    @Override
+    public void save() {
     }
 
     @Override

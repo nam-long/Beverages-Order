@@ -16,6 +16,8 @@ public interface EditOrderController {
 
     void removeBeverage(int id);
 
+    void save();
+
     void registerObserver(ChangedOrderDetailsListObserver observer);
 
     void unregisterObserver(ChangedOrderDetailsListObserver observer);
