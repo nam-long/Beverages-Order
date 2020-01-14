@@ -25,6 +25,7 @@ public class BeverageList implements DataObserver<Beverage> {
     public void initiate(BeverageModel model) {
         this.model = model;
         this.model.registerObserver(this);
+        this.model.pullBeverages();
     }
 
     public BeverageModel getModel() {
