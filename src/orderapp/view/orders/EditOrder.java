@@ -119,26 +119,12 @@ public class EditOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void setId(int id) {
-
-    }
-
-    @Override
     public long getTime() {
         return 0;
     }
 
     @Override
-    public void setTime(long time) {
-
-    }
-
-    @Override
     public String getDescription() {
         return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
     }
 }

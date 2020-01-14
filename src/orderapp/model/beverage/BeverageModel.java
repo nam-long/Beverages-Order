@@ -14,7 +14,7 @@ public interface BeverageModel {
 
     List<Beverage> getAllBeverages();
 
-    void pull();
+    void pullBeverages();
 
     void registerObserver(DataObserver<Beverage> observer);
 

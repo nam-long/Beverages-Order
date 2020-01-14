@@ -38,7 +38,7 @@ public class BeverageModelImpl implements BeverageModel {
     }
 
     @Override
-    public void pull() {
+    public void pullBeverages() {
         notifyObservers();
     }
 

@@ -9,6 +9,8 @@ import orderapp.state.Pane;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Orders extends Pane {
 
@@ -28,12 +30,22 @@ public class Orders extends Pane {
         setComponent(rootPanel);
 
         initUiComponents();
+        ordersTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int clickCount = e.getClickCount();
+                if (clickCount > 1) {
+                    editSelectedRow();
+                }
+            }
+        });
     }
 
     private void initUiComponents() {
 
         orderTableModel = new OrderTableModel();
         ordersTable.setModel(orderTableModel);
+
         controller.registerObserver(orderTableModel);
 
         newButton.addActionListener(new ActionListener() {
@@ -63,21 +75,28 @@ public class Orders extends Pane {
     }
 
     private void onEditClicked() {
-        int viewRowIndex = ordersTable.getSelectedRow();
-        if (viewRowIndex != -1) {
-            int rowIndex = ordersTable.convertRowIndexToModel(viewRowIndex);
+        editSelectedRow();
+    }
+
+    private void editSelectedRow() {
+        int rowIndex = getSelectedRowIndex();
+        if (rowIndex != -1) {
             Order order = orderTableModel.getOrder(rowIndex);
             controller.editOrder(order);
         }
     }
 
     private void onDeleteClicked() {
-        int viewRowIndex = ordersTable.getSelectedRow();
-        if (viewRowIndex != -1) {
-            int rowIndex = ordersTable.convertRowIndexToModel(viewRowIndex);
+        int rowIndex = getSelectedRowIndex();
+        if (rowIndex != -1) {
             Order order = orderTableModel.getOrder(rowIndex);
             controller.deleteOrder(order.getId());
         }
+    }
+
+    private int getSelectedRowIndex() {
+        int viewRowIndex = ordersTable.getSelectedRow();
+        return (viewRowIndex != -1) ? ordersTable.convertRowIndexToModel(viewRowIndex) : -1;
     }
 
     @Override

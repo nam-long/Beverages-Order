@@ -90,6 +90,11 @@ public class NewOrder extends Pane implements OrderView {
         });
     }
 
+    private void resetUiComponents() {
+        dateChooser.setDate(new Date(System.currentTimeMillis()));
+        descriptionField.setText("");
+    }
+
     private void onAddClicked() {
 
         OrderDetailsInput input = OrderDetailsInput.newOrderDetails(BeverageList.getInstance().getBeverages());
@@ -158,6 +163,7 @@ public class NewOrder extends Pane implements OrderView {
 
     @Override
     public void onPaneOpened(Object param) {
+        resetUiComponents();
         controller.newOrderInstance();
     }
 
@@ -172,25 +178,12 @@ public class NewOrder extends Pane implements OrderView {
     }
 
     @Override
-    public void setId(int id) {
-    }
-
-    @Override
     public long getTime() {
         return dateChooser.getDate().getTime();
     }
 
     @Override
-    public void setTime(long time) {
-    }
-
-    @Override
     public String getDescription() {
         return descriptionField.getText().trim();
-    }
-
-    @Override
-    public void setDescription(String description) {
-
     }
 }

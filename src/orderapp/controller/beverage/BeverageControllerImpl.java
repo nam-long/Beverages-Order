@@ -24,7 +24,7 @@ class BeverageControllerImpl implements BeverageController {
 
     @Override
     public void pullBeverages() {
-        model.pull();
+        model.pullBeverages();
     }
 
     @Override
